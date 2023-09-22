@@ -40,3 +40,8 @@ docker compose exec app php artisan migrate --seed
 ```
 
 Muitos dados serão criados (1000 especialistas com 1000 avaliações cada), então essa última etapa será demorada. Enquanto ela executa, a API já estará acessível através do endereço http://localhost:8123/api. Além disso, o endereço http://localhost:8025 provê acesso ao serviço de e-mail _Mailpit_.
+
+8. Para executar o teste de carga no linux, adicione o comando _--add-host host.docker.internal:host-gateway_
+```shell
+docker run --add-host host.docker.internal:host-gateway --rm williamyeh/wrk -c 10 -t 4 -d 10 http://host.docker.internal:8123/api/test
+```
